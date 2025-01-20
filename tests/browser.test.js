@@ -5,7 +5,7 @@ const fileUnderTest =
   "file://" + __dirname.replace(/ /g, "%20") + "/../dist/index.html";
 const defaultTimeout = 10000;
 let driver;
-jest.setTimeout(1000 * 60 * 5); // 5 minuter
+jest.setTimeout(1000 * 3 * 5); // 5 minuter
 
 // Det här körs innan vi kör testerna för att säkerställa att Firefox är igång
 beforeAll(async () => {
@@ -48,7 +48,7 @@ describe('Clicking "Pusha till stacken"', () => {
 
     topOfStack = await driver.findElement(By.id("top_of_stack")).getText();
     assert.strictEqual(topOfStack, "n/a");
-    expect(stack).toEqual("n/a");
+    expect(stack).toEqual("555");
   } finally {
     await driver.quit();
   }
