@@ -16,6 +16,8 @@
   "author": "Vladyslav Oliinyk",
   "license": "MIT",
   "dependencies": {
+    "geckodriver": "^5.0.0",
+    "selenium-webdriver": "^4.27.0",
     "underscore": "^1.13.7"
   },
   "devDependencies": {
