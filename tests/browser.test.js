@@ -33,3 +33,23 @@ describe('Clicking "Pusha till stacken"', () => {
     await alert.accept();
   });
 });
+
+(async function example() {
+  let driver = await new Builder().forBrowser("firefox").build();
+  try {
+    await driver.get(fileUnderTest);
+    await driver.findElement(By.id("push")).click();
+    await driver.switchTo().alert().sendKeys("1");
+    await driver.switchTo().alert().accept();
+
+    let topOfStack = await driver.findElement(By.id("top_of_stack")).getText();
+    assert.strictEqual(topOfStack, "1");
+    await driver.findElement(By.id("pop")).click();
+
+    topOfStack = await driver.findElement(By.id("top_of_stack")).getText();
+    assert.strictEqual(topOfStack, "n/a");
+    expect(stack).toEqual("n/a");
+  } finally {
+    await driver.quit();
+  }
+})();
